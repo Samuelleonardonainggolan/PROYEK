@@ -148,6 +148,8 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px #89CFF0;
+            margin-left: 30px;
+            margin-right: 30px;
         }
 
         .profile-img {
@@ -275,7 +277,7 @@
 
         <br><br><br>
 
-        <div class="col-md-12 text-center fh5co-heading" style="text-align: center;">
+        <div class="col-md-12 text-center" style="text-align: center;">
             <h2>Kata Sambutan</h2><br>
         </div><br><br>
 
