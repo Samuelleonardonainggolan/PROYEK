@@ -139,6 +139,33 @@
     <div class="container">
         <h2>TENTANG DATA SEKOLAH</h2>
     </div>
+    @if ($datasekolahuser)
+        @foreach(explode("\n", $datasekolahuser->visi) as $visi)
+            <div class="section-visi">
+                <h3>VISI :</h3>
+                <p>{{ $visi }}</p>
+            </div>
+        @endforeach
+    @endif
+
+    @if (!is_null($datasekolahuser) && !empty($datasekolahuser->misi))
+        <div class="section-misi">
+            <h3>MISI :</h3>
+            <ol id="misi-list">
+                @foreach(explode("\n", $datasekolahuser->misi) as $misi)
+                    <li>{{ $misi }}</li>
+                @endforeach
+            </ol>
+        </div>
+    @endif
+
+    <div class="section-sejarah">
+        <h3>SEJARAH:</h3>
+        <p>Sekolah tersebut sebagai hasil dari aspirasi seorang ketua yayasan yang terinspirasi oleh kualitas pendidikan tinggi yang dimiliki oleh sekolah-sekolah di Medan. Melihat keberhasilan sekolah-sekolah tersebut, dia berkomitmen untuk membangun sebuah lembaga pendidikan yang serupa, yang menawarkan standar pendidikan yang sama tingginya.</p>
+        <p>Dengan demikian, sekolah tersebut didirikan dengan tujuan untuk memberikan pendidikan berkualitas tinggi kepada masyarakat Tarutung, mengikuti jejak keberhasilan sekolah-sekolah di Medan sebagai model. Proses pembentukan sekolah tersebut dipandu oleh visi dan misi yayasan, serta komitmen untuk menyediakan lingkungan belajar yang kondusif dan program akademik yang unggul, sehingga menciptakan sebuah lembaga pendidikan yang menjadi kebanggaan.</p>
+    </div>
+
+
     <div class="section-content">
         <div class="identitas-sekolah">
             <h3>IDENTITAS SEKOLAH</h3>
@@ -164,32 +191,6 @@
             <p>LINTANG : 2</p>
             <p>BUJUR : 98</p>
         </div>
-    </div>
-
-    @if ($datasekolahuser)
-        @foreach(explode("\n", $datasekolahuser->visi) as $visi)
-            <div class="section-visi">
-                <h3>VISI :</h3>
-                <p>{{ $visi }}</p>
-            </div>
-        @endforeach
-    @endif
-
-    @if (!is_null($datasekolahuser) && !empty($datasekolahuser->misi))
-        <div class="section-misi">
-            <h3>MISI :</h3>
-            <ol id="misi-list">
-                @foreach(explode("\n", $datasekolahuser->misi) as $misi)
-                    <li>{{ $misi }}</li>
-                @endforeach
-            </ol>
-        </div>
-    @endif
-
-    <div class="section-sejarah">
-        <h3>SEJARAH:</h3>
-        <p>Sekolah tersebut sebagai hasil dari aspirasi seorang ketua yayasan yang terinspirasi oleh kualitas pendidikan tinggi yang dimiliki oleh sekolah-sekolah di Medan. Melihat keberhasilan sekolah-sekolah tersebut, dia berkomitmen untuk membangun sebuah lembaga pendidikan yang serupa, yang menawarkan standar pendidikan yang sama tingginya.</p>
-        <p>Dengan demikian, sekolah tersebut didirikan dengan tujuan untuk memberikan pendidikan berkualitas tinggi kepada masyarakat Tarutung, mengikuti jejak keberhasilan sekolah-sekolah di Medan sebagai model. Proses pembentukan sekolah tersebut dipandu oleh visi dan misi yayasan, serta komitmen untuk menyediakan lingkungan belajar yang kondusif dan program akademik yang unggul, sehingga menciptakan sebuah lembaga pendidikan yang menjadi kebanggaan.</p>
     </div>
 
 

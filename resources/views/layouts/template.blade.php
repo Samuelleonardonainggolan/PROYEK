@@ -31,7 +31,7 @@
 
     <div class="container">
         <div class="content">
-                <img src="{{ asset('storage/' . $berita->image) }}" alt="{{ $berita->informasi_berita }}"><br><br>
+                <img src="{{ asset('images/berita/' . $berita->image) }}" alt="{{ $berita->informasi_berita }}"><br><br>
             <h1>{{ $berita->informasi_berita }}</h1><br>
             <p>{{ $berita->informasi_alumni }}</p>
         </div>

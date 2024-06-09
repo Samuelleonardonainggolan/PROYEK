@@ -190,7 +190,34 @@
         </div>
     </div>
     <!-- Fasilitas Section -->
+
     <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center mb-4">
+                <h2>Fasilitas SD Swasta Filadelfia</h2>
+            </div>
+        </div>
+        <div class="row">
+            @forelse($fasilitas as $item)
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ asset('images/fasilitas/' . $item->fasilitas_image) }}" class="card-img-top" alt="{{ $item->nama }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->nama }}</h5>
+                            <p class="card-text">{{ $item->deskripsi }}</p>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-md-12 text-center">
+                    <p>Data fasilitas belum tersedia.</p>
+                </div>
+            @endforelse
+        </div>
+    </div>
+
+
+    {{-- <div class="container mt-5">
         <div class="row">
             <div class="col-md-12 text-center mb-4">
                 <h2>Fasilitas SD Swasta Filadelfia</h2>
@@ -213,7 +240,7 @@
                 </div>
             @endforelse
         </div>
-    </div>
+    </div> --}}
     <!-- Footer -->
     @include('components.scroll-to-top')
     @include('footer')

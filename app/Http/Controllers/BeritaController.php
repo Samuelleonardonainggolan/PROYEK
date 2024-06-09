@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -22,9 +22,14 @@ class BeritaController extends Controller
         return DataTables::of($berita)
             ->addIndexColumn()
             ->addColumn('image', function ($row) {
-                $imageUrl = asset('storage/' . $row->image);
+                $imageUrl = asset('images/berita/' . $row->image);
                 return '<img src="' . $imageUrl . '" alt="Image" height="50">';
             })
+
+        // ->addColumn('image', function ($row) {
+        //     $imageUrl = asset('storage/' . $row->image);
+        //     return '<img src="' . $imageUrl . '" alt="Image" height="50">';
+        // })
             ->addColumn('action', function ($row) {
                 $editUrl = route('berita.edit', ['berita' => $row->berita_id]);
                 $deleteUrl = route('berita.destroy', ['berita' => $row->berita_id]);
@@ -52,9 +57,16 @@ class BeritaController extends Controller
             return response()->json(['errors' => $validator->errors(), 'message' => 'Maaf, inputan yang Anda masukkan salah. Silakan periksa kembali dan coba lagi'], 422);
         }
 
-        $path = $request->file('image')->store('images/berita', 'public');
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/berita'), $imageName);
+
         $validatedData = $request->only('informasi_berita', 'informasi_alumni');
-        $validatedData['image'] = $path;
+        $validatedData['image'] = $imageName;
+
+        // $path = $request->file('image')->store('images/berita', 'public');
+        // $validatedData = $request->only('informasi_berita', 'informasi_alumni');
+        // $validatedData['image'] = $path;
 
         $berita = Berita::create($validatedData);
 
@@ -63,9 +75,15 @@ class BeritaController extends Controller
 
     public function detail(Berita $berita)
     {
-        $berita->image_url = asset('storage/' . $berita->image);
+        $berita->image_url = asset('images/berita/' . $berita->image);
         return response()->json(['data' => $berita]);
     }
+
+    // public function detail(Berita $berita)
+    // {
+    //     $berita->image_url = asset('storage/' . $berita->image);
+    //     return response()->json(['data' => $berita]);
+    // }
 
     public function edit(Berita $berita)
     {
@@ -89,12 +107,25 @@ class BeritaController extends Controller
         $validatedData = $request->only('informasi_berita', 'informasi_alumni');
 
         if ($request->hasFile('image')) {
-            if ($berita->image) {
-                Storage::disk('public')->delete($berita->image);
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/berita'), $imageName);
+
+            // Delete the old image if it exists
+            if ($berita->image && File::exists(public_path('images/berita/' . $berita->image))) {
+                File::delete(public_path('images/berita/' . $berita->image));
             }
-            $path = $request->file('image')->store('images/berita', 'public');
-            $validatedData['image'] = $path;
+
+            $validatedData['image'] = $imageName;
         }
+
+        // if ($request->hasFile('image')) {
+        //     if ($berita->image) {
+        //         Storage::disk('public')->delete($berita->image);
+        //     }
+        //     $path = $request->file('image')->store('images/berita', 'public');
+        //     $validatedData['image'] = $path;
+        // }
 
         $berita->update($validatedData);
 
@@ -103,9 +134,14 @@ class BeritaController extends Controller
 
     public function destroy(Berita $berita)
     {
-        if ($berita->image) {
-            Storage::disk('public')->delete($berita->image);
+        //Delete the image from the public directory if it exists
+        if ($berita->image && File::exists(public_path('images/berita/' . $berita->image))) {
+            File::delete(public_path('images/berita/' . $berita->image));
         }
+
+        // if ($berita->image) {
+        //     Storage::disk('public')->delete($berita->image);
+        // }
         $berita->delete();
 
         return response()->json(['message' => 'Berita berhasil dihapus'], 200);

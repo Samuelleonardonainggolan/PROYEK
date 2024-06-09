@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Fasilitas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -21,8 +20,11 @@ class FasilitasController extends Controller
         return DataTables::of($fasilitas)
             ->addIndexColumn()
             ->addColumn('fasilitas_image', function ($fasilitas) {
-                return '<img src="' . asset('storage/' . $fasilitas->fasilitas_image) . '" class="img-thumbnail" width="100">';
+                return '<img src="' . asset('images/fasilitas/' . $fasilitas->fasilitas_image) . '" class="img-thumbnail" width="100">';
             })
+        // ->addColumn('fasilitas_image', function ($fasilitas) {
+        //     return '<img src="' . asset('storage/' . $fasilitas->fasilitas_image) . '" class="img-thumbnail" width="100">';
+        // })
             ->addColumn('action', function ($fasilitas) {
                 $editUrl = route('fasilitas.edit', $fasilitas->fasilitas_id);
                 $deleteUrl = route('fasilitas.destroy', $fasilitas->fasilitas_id);
@@ -53,11 +55,17 @@ class FasilitasController extends Controller
         $fasilitas = new Fasilitas();
         $fasilitas->fill($validator->validated());
 
-        foreach (['fasilitas_image'] as $image) {
-            if ($request->hasFile($image)) {
-                $fasilitas->$image = $request->file($image)->store('images/fasilitas', 'public');
-            }
+        if ($request->hasFile('fasilitas_image')) {
+            $imageName = time() . '_' . $request->file('fasilitas_image')->getClientOriginalName();
+            $request->file('fasilitas_image')->move(public_path('images/fasilitas'), $imageName);
+            $fasilitas->fasilitas_image = $imageName;
         }
+
+        // foreach (['fasilitas_image'] as $image) {
+        //     if ($request->hasFile($image)) {
+        //         $fasilitas->$image = $request->file($image)->store('images/fasilitas', 'public');
+        //     }
+        // }
 
         $fasilitas->save();
 
@@ -82,12 +90,24 @@ class FasilitasController extends Controller
 
         $fasilitas->fill($validated);
 
-        foreach (['fasilitas_image'] as $image) {
-            if ($request->hasFile($image)) {
-                Storage::disk('public')->delete($fasilitas->$image);
-                $fasilitas->$image = $request->file($image)->store('images/fasilitas', 'public');
+        if ($request->hasFile('fasilitas_image')) {
+            $imageName = time() . '_' . $request->file('fasilitas_image')->getClientOriginalName();
+            $request->file('fasilitas_image')->move(public_path('images/fasilitas'), $imageName);
+            if ($fasilitas->fasilitas_image) {
+                $oldImagePath = public_path('images/fasilitas/' . $fasilitas->fasilitas_image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
             }
+            $fasilitas->fasilitas_image = $imageName;
         }
+
+        // foreach (['fasilitas_image'] as $image) {
+        //     if ($request->hasFile($image)) {
+        //         Storage::disk('public')->delete($fasilitas->$image);
+        //         $fasilitas->$image = $request->file($image)->store('images/fasilitas', 'public');
+        //     }
+        // }
 
         $fasilitas->save();
 
@@ -96,17 +116,28 @@ class FasilitasController extends Controller
 
     public function show(Fasilitas $id)
     {
-        $id->image_url = asset('storage/' . $id->image);
+        $id->image_url = asset('images/fasilitas/' . $id->image);
         return response()->json(['data' => $id]);
     }
+
+    // public function show(Fasilitas $id)
+    // {
+    //     $id->image_url = asset('storage/' . $id->image);
+    //     return response()->json(['data' => $id]);
+    // }
 
     public function destroy($id)
     {
         $fasilitas = Fasilitas::findOrFail($id);
 
-        foreach (['fasilitas_image'] as $image) {
-            Storage::disk('public')->delete($fasilitas->$image);
+        $imagePath = public_path('images/fasilitas/' . $fasilitas->fasilitas_image);
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
         }
+
+        // foreach (['fasilitas_image'] as $image) {
+        //     Storage::disk('public')->delete($fasilitas->$image);
+        // }
 
         $fasilitas->delete();
 

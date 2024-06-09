@@ -9,7 +9,7 @@
         bottom: 20px;
         right: 20px;
         display: none;
-        background-color: #007bff;
+        background-color: #89CFF0;
         color: white;
         border: none;
         padding: 10px 15px;

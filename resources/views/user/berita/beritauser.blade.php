@@ -126,7 +126,35 @@
     </div>
 
     <br>
-    <div class="col-md-12 text-center fh5co-heading" style="margin-top: 50px; text-align: center;">
+
+    <div class="container">
+        <div class="col-md-12 text-center fh5co-heading">
+            <h2>Berita Terbaru</h2><br>
+        </div>
+        <br>
+        @foreach ($beritas->items() as $berita)
+            <div class="container">
+                <h1 class="title">{{ $berita->informasi_berita }}</h1>
+                <div class="content">
+                    <img src="{{ asset('images/berita/' . $berita->image) }}" class="image" alt="{{ $berita->informasi_berita }}" style="width: 90%; border-radius: 15px;">
+                    <div class="description">
+                        @php
+                            $words = explode(' ', $berita->informasi_alumni);
+                            $preview = implode(' ', array_slice($words, 0, 20)) . (count($words) > 20 ? '...' : '');
+                        @endphp
+                        <p>{{ $preview }}</p>
+                        <button class="read-more-btn">
+                            <a href="{{ route('user.berita.show', ['berita_id' => $berita->berita_id]) }}" id="garisbawah">
+                                Baca Lebih Lanjut
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    {{-- <div class="col-md-12 text-center fh5co-heading" style="margin-top: 50px; text-align: center;">
         <h2 style="font-size: 40px;">Berita</h2><br>
     </div>
     <br>
@@ -149,7 +177,7 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 
     <br><br>
     @include('components.scroll-to-top')

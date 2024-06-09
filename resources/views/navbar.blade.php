@@ -14,7 +14,7 @@
 
     <style>
         .nav-orange {
-            background-color: #AD0A0A;
+            background-color: #960019;
         }
 
         .nav-link {

@@ -12,10 +12,13 @@
         <div class="col-lg-12 col-md-12 col-12">
             <x-card>
                 <x-slot name="header">
+                    <button onclick="addFormDataSekolah(`{{ route('datasekolah.store') }}`)" class="btn btn-sm btn-info">
+                        <i class="fas fa-plus-circle"></i> Tambah Data
+                    </button>
                 </x-slot>
 
                 <x-table id="roleTable" class="table table-striped">
-                    <x-slot name="thead">rm 
+                    <x-slot name="thead">rm
                         <th>No</th>
                         <th>Visi</th>
                         <th>Misi</th>
