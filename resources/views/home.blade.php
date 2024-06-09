@@ -292,7 +292,7 @@
                         </div>
                         <div class="column-two">
                             <center>
-                                <img src="{{ asset('storage/' . $value->ketua_image) }}" alt="Ketua Yayasan" class="profile-img">
+                                <img src="{{ asset('images/beranda/' . $value->ketua_image) }}" alt="Ketua Yayasan" class="profile-img">
                             </center>
                         </div>
                     </div>
@@ -307,7 +307,7 @@
                     <div class="col-container">
                         <div class="column-two">
                             <center>
-                                <img src="{{ asset('storage/' . $value->kepala_image) }}" alt="Kepala Sekolah" class="profile-img">
+                                <img src="{{ asset('images/beranda/' . $value->kepala_image) }}" alt="Kepala Sekolah" class="profile-img">
                             </center>
                         </div>
                         <div class="column-one">
