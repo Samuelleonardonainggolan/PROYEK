@@ -16,7 +16,7 @@ class DataSekolahController extends Controller
 
     public function data()
     {
-        $datasekolah = datasekolah::all();
+        $datasekolah = DataSekolah::all();
 
         return DataTables::of($datasekolah)
             ->addIndexColumn()
@@ -54,7 +54,7 @@ class DataSekolahController extends Controller
 
         $validatedData = $request->only('visi', 'misi');
 
-        $datasekolah = datasekolah::create($validatedData);
+        $datasekolah = DataSekolah::create($validatedData);
 
         return response()->json(['message' => 'Data Sekolah berhasil ditambahkan', 'data' => $datasekolah], 200);
     }

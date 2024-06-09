@@ -16,7 +16,7 @@ class DataAlumniController extends Controller
 
     public function data()
     {
-        $dataalumni = dataalumni::all();
+        $dataalumni = DataAlumni::all();
 
         return DataTables::of($dataalumni)
             ->addIndexColumn()
@@ -54,7 +54,7 @@ class DataAlumniController extends Controller
 
         $validatedData = $request->only('nama', 'tahun');
 
-        $dataalumni = dataalumni::create($validatedData);
+        $dataalumni = DataAlumni::create($validatedData);
 
         return response()->json(['message' => 'Data alumni berhasil ditambahkan', 'data' => $dataalumni], 200);
     }
@@ -95,7 +95,7 @@ class DataAlumniController extends Controller
 
     public function destroy($dataalumni)
     {
-        $dataalumni = dataalumni::findOrFail($dataalumni);
+        $dataalumni = DataAlumni::findOrFail($dataalumni);
         $dataalumni->delete();
 
         return response()->json(['message' => 'Data Alumni berhasil dihapus'], 200);

@@ -148,8 +148,6 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px #89CFF0;
-            margin-left: 30px;
-            margin-right: 30px;
         }
 
         .profile-img {
@@ -277,53 +275,7 @@
 
         <br><br><br>
 
-        <div class="col-md-12 text-center" style="text-align: center;">
-            <h2>Kata Sambutan</h2><br>
-        </div><br><br>
-
-        @foreach ($beranda as $key => $value)
-            <!-- Ketua Yayasan -->
-            <div class="box">
-                <div class="content-container">
-                    <div class="col-container">
-                        <div class="column-one">
-                            <h1 class="xl-font"><b>Ketua Yayasan</b></h1>
-                            <h2><b class="l-font text">{{ $value->namaketua }}</b></h2>
-                            <p class="l-font text">{{ $value->ketua }}</p>
-                            <button class="read-more-btn" data-target=".text">Baca Lebih Lanjut</button>
-                        </div>
-                        <div class="column-two">
-                            <center>
-                                <img src="{{ asset('images/beranda/' . $value->ketua_image) }}" alt="Ketua Yayasan" class="profile-img">
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <br><br>
-
-            <!-- Kepala Sekolah -->
-            <div class="box">
-                <div class="content-container">
-                    <div class="col-container">
-                        <div class="column-two">
-                            <center>
-                                <img src="{{ asset('images/beranda/' . $value->kepala_image) }}" alt="Kepala Sekolah" class="profile-img">
-                            </center>
-                        </div>
-                        <div class="column-one">
-                            <h1 class="xl-font"><b>Kepala Sekolah</b></h1>
-                            <h2><b class="l-font text">{{ $value->namakepala }}</b></h2>
-                            <p class="l-font text">{{ $value->kepala }}</p>
-                            <button class="read-more-btn" data-target=".text">Baca Lebih Lanjut</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-
-        {{-- <div class="col-md-12 text-center" style="text-align: center;">
+        <div class="col-md-12 text-center fh5co-heading" style="text-align: center;">
             <h2>Kata Sambutan</h2><br>
         </div><br><br>
 
