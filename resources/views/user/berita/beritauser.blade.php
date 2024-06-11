@@ -98,6 +98,9 @@
             text-decoration: none;
             color: white;
         }
+        /* h3 {
+            color: #2976DF;
+        } */
     </style>
 </head>
 
@@ -118,26 +121,22 @@
 
     <!-- Hero image -->
     <div class="hero">
-        <img src="{{ asset('img/Berita.jpg') }}" alt="Background Image" class="hero-image" style="width: 100%; height: 700px">
+        <img src="{{ asset('img/Berita.jpg') }}" alt="Background Image" class="hero-image" style="width: 100%; height: 440px">
         <div class="hero-overlay">
             <h1 id="welcome-part1"></h1>
             <h1 id="welcome-part2"></h1>
         </div>
     </div>
-
-    <br>
-
-    <div class="container">
         <div class="col-md-12 text-center fh5co-heading">
             <h2>Berita Terbaru</h2><br>
         </div>
         <br>
         @foreach ($beritas->items() as $berita)
             <div class="container">
-                <h1 class="title">{{ $berita->informasi_berita }}</h1>
                 <div class="content">
                     <img src="{{ asset('images/berita/' . $berita->image) }}" class="image" alt="{{ $berita->informasi_berita }}" style="width: 90%; border-radius: 15px;">
                     <div class="description">
+                        <h3 style="color: #2976DF">{{ $berita->informasi_berita }}</h3>
                         @php
                             $words = explode(' ', $berita->informasi_alumni);
                             $preview = implode(' ', array_slice($words, 0, 20)) . (count($words) > 20 ? '...' : '');

@@ -73,8 +73,8 @@
         <div class="logo clearfix">
             <div class="header">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('img/logoo.jpeg') }}" alt="Logo Sekolah" class="logo">
-                    <div class="text float-right" style="margin-top: 35px;">
+                    <img src="{{ asset('img/logoo.jpeg') }}" alt="Logo Sekolah" class="logo" style="width: 80px;">
+                    <div class="text float-right" style="margin-top: 20px;">
                         <span class="nav-item text-white">SD SWASTA FILADELFIA TARUTUNG</span>
                     </div>
                 </a>

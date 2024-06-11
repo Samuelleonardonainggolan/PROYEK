@@ -133,7 +133,7 @@
 
         <!-- Hero image -->
         <div class="hero">
-            <img src="{{ asset('img/Data Sekolah.jpg') }}" alt="" style="filter: brightness(0.5) contrast(1.3);">
+            <img src="{{ asset('img/Data Sekolah.jpg') }}" alt="" style="filter: brightness(0.5) contrast(1.3); height: 450px;">
         </div>
     </div>
     <div class="container">
@@ -142,7 +142,7 @@
     @if ($datasekolahuser)
         @foreach(explode("\n", $datasekolahuser->visi) as $visi)
             <div class="section-visi">
-                <h3>VISI :</h3>
+                <h3>Visi :</h3>
                 <p>{{ $visi }}</p>
             </div>
         @endforeach
@@ -150,7 +150,7 @@
 
     @if (!is_null($datasekolahuser) && !empty($datasekolahuser->misi))
         <div class="section-misi">
-            <h3>MISI :</h3>
+            <h3>Misi :</h3>
             <ol id="misi-list">
                 @foreach(explode("\n", $datasekolahuser->misi) as $misi)
                     <li>{{ $misi }}</li>
@@ -160,36 +160,35 @@
     @endif
 
     <div class="section-sejarah">
-        <h3>SEJARAH:</h3>
+        <h3>Sejarah :</h3>
         <p>Sekolah tersebut sebagai hasil dari aspirasi seorang ketua yayasan yang terinspirasi oleh kualitas pendidikan tinggi yang dimiliki oleh sekolah-sekolah di Medan. Melihat keberhasilan sekolah-sekolah tersebut, dia berkomitmen untuk membangun sebuah lembaga pendidikan yang serupa, yang menawarkan standar pendidikan yang sama tingginya.</p>
         <p>Dengan demikian, sekolah tersebut didirikan dengan tujuan untuk memberikan pendidikan berkualitas tinggi kepada masyarakat Tarutung, mengikuti jejak keberhasilan sekolah-sekolah di Medan sebagai model. Proses pembentukan sekolah tersebut dipandu oleh visi dan misi yayasan, serta komitmen untuk menyediakan lingkungan belajar yang kondusif dan program akademik yang unggul, sehingga menciptakan sebuah lembaga pendidikan yang menjadi kebanggaan.</p>
     </div>
 
-
     <div class="section-content">
         <div class="identitas-sekolah">
-            <h3>IDENTITAS SEKOLAH</h3>
+            <h3>Identitas Sekolah</h3>
             <p>NPSN : 69774567</p>
-            <p>STATUS : SWASTA</p>
-            <p>BENTUK PENDIDIKAN : SMP</p>
-            <p>STATUS KEPEMILIKAN : YAYASAN</p>
-            <p>SK PENDIRIAN SEKOLAH : 02/IY/YPF/2012</p>
-            <p>TANGGAL SK PENDIRIAN : 2012-02-09</p>
-            <p>SK IZIN OPERASIONAL : 425/2265/BDM/DP/2013</p>
-            <p>TANGGAL SK IZIN OPERASIONAL : 2013-09-12</p>
+            <p>Status : Swasta</p>
+            <p>Bentuk Pendidikan : SD</p>
+            <p>Status Kepemilikan : Yayasan</p>
+            <p>SK Pendirian Sekolah : 02/IY/YPF/2012</p>
+            <p>Tanggal SK Pendirian : 2012-02-09</p>
+            <p>SK Izin Operasional : 425/2265/BDM/DP/2013</p>
+            <p>Tanggal SK Izin Operasional : 2013-09-12</p>
         </div>
         <div class="kontak-utama">
-            <h3>KONTAK UTAMA</h3>
-            <p>ALAMAT : JL. SUTAN SUMURUNG, SAIT NI HUTA, TARUTUNG</p>
+            <h3>Kontak Utama</h3>
+            <p>Alamt : Jl. Sutan Sumurung, Sait Ni Huta, Tarutung</p>
             <p>RT / RW : 0 / 0</p>
-            <p>DUSUN : SAITNIHUTA</p>
-            <p>DESA / KELURAHAN : HUTA TORUAN IV</p>
-            <p>KECAMATAN : KEC. TARUTUNG</p>
-            <p>KABUPATEN : KAB. TAPANULI UTARA</p>
-            <p>PROVINSI : PROV. SUMATERA UTARA</p>
-            <p>KODE POS : 22411</p>
-            <p>LINTANG : 2</p>
-            <p>BUJUR : 98</p>
+            <p>Dusun : Saitnihuta</p>
+            <p>Desa / Kelurahan : Huta Toruan IV</p>
+            <p>Kecamatan : Kec. Tarutung</p>
+            <p>Kabupaten : Kab. Tapanuli Utara</p>
+            <p>Provinsi : Prov. Sumatera Utara</p>
+            <p>Kode Pos : 22411</p>
+            <p>Lintang : 2</p>
+            <p>Bujur : 98</p>
         </div>
     </div>
 

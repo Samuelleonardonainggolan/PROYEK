@@ -18,6 +18,7 @@ body {
 
 .nav-orange {
     background-color: red;
+    height: 100px;
 }
 
 .navlink {
@@ -39,13 +40,6 @@ body {
 
 .hero img {
     width: 100%;
-}
-
-.title {
-    font-family: 'mulisemibold';
-    font-size: 20px;
-    padding-bottom: 7.5px;
-    border-bottom: 5px solid #ddd
 }
 
 span.tgl {
@@ -145,4 +139,8 @@ span.judul a:hover {
 
 .icon-arrow-up:before {
     content: "\e096";
+}
+
+th {
+    position: fixed;
 }

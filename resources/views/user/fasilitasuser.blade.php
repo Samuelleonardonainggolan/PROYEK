@@ -67,7 +67,8 @@
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             width: 100%;
-            height: auto;
+            height: 200px; /* Set a fixed height for consistency */
+            object-fit: cover; /* Ensure the image covers the area, cropping if necessary */
             margin-bottom: 15px;
             transition: transform 0.3s;
         }
@@ -81,6 +82,11 @@
             margin-top: 10px;
             font-size: 1.5rem;
             font-weight: bold;
+            min-height: 50px; /* Ensure consistent height for titles */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .card-text {
@@ -92,7 +98,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 15px;
         }
 
         h2 {
@@ -186,7 +192,7 @@
 
         <!-- Hero image -->
         <div class="hero">
-            <img src="{{ asset('img/Fasilitas.jpg') }}" alt="" style="height: 700px;width:100%;">
+            <img src="{{ asset('img/Fasilitas.jpg') }}" alt="" style="height: 450px;width:100%;">
         </div>
     </div>
     <!-- Fasilitas Section -->
@@ -199,7 +205,7 @@
         </div>
         <div class="row">
             @forelse($fasilitas as $item)
-                <div class="col-md-4 mb-4">
+                <div class="col-md-3 mb-4">
                     <div class="card h-100">
                         <img src="{{ asset('images/fasilitas/' . $item->fasilitas_image) }}" class="card-img-top" alt="{{ $item->nama }}">
                         <div class="card-body">
@@ -216,31 +222,6 @@
         </div>
     </div>
 
-
-    {{-- <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12 text-center mb-4">
-                <h2>Fasilitas SD Swasta Filadelfia</h2>
-            </div>
-        </div>
-        <div class="row">
-            @forelse($fasilitas as $item)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="{{ asset('storage/' . $item->fasilitas_image) }}" class="card-img-top" alt="{{ $item->nama }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $item->nama }}</h5>
-                            <p class="card-text">{{ $item->deskripsi }}</p>
-                        </div>
-                    </div>
-                </div>
-            @empty
-                <div class="col-md-12 text-center">
-                    <p>Data fasilitas belum tersedia.</p>
-                </div>
-            @endforelse
-        </div>
-    </div> --}}
     <!-- Footer -->
     @include('components.scroll-to-top')
     @include('footer')

@@ -96,7 +96,7 @@
     <!-- content -->
     <div class="hero">
         <div class="hero">
-            <img src="{{ asset('img/Data Alumni.jpg') }}" alt="" style="filter: brightness(0.5) contrast(1.3);">
+            <img src="{{ asset('img/Data Alumni.jpg') }}" alt="" style="filter: brightness(0.5) contrast(1.3); height:450px;">
         </div>
         <div class="container mt-5">
             <h2>DATA ALUMNI</h2>
@@ -104,8 +104,8 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" style="background-color: #007bff; color: white; width: 50%; text-align: center;">Nama</th>
-                            <th scope="col" style="background-color: #007bff; color: white; width: 50%; text-align: center;">Tahun Lulus</th>
+                            <td scope="col" style="background-color: #007bff; color: white; width: 50%; text-align: center;">Nama</td>
+                            <td scope="col" style="background-color: #007bff; color: white; width: 50%; text-align: center;">Tahun Lulus</td>
 
                         </tr>
                     </thead>

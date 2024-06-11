@@ -60,6 +60,7 @@
         }
 
         @keyframes blink-caret {
+
             from,
             to {
                 border-color: transparent
@@ -104,6 +105,7 @@
         }
 
         @media screen and (max-width: 800px) {
+
             .column-one,
             .column-two {
                 width: 100%;
@@ -148,6 +150,8 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px #89CFF0;
+            margin-left: 30px;
+            margin-right: 30px;
         }
 
         .profile-img {
@@ -159,18 +163,25 @@
 
         .card-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             grid-gap: 30px;
             border-radius: 50px;
         }
 
         .card {
-            text-align: justify;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             box-shadow: 0 4px 20px #89CFF0;
-            padding: 16px;
+            padding: 2px;
             border-radius: 50px;
         }
 
+        .card-body {
+            flex-direction: column;
+            display: flex;
+            justify-content: space-around;
+        }
 
         @media screen and (max-width: 800px) {
             .card-container {
@@ -181,6 +192,7 @@
         #garisbawah {
             text-decoration: none;
             color: white;
+            padding-bottom: 20px;
         }
 
         button.berita {
@@ -198,17 +210,23 @@
             background-color: #7393B3;
         }
 
+        .card img.card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
     </style>
 </head>
 
 <body>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const readMoreButtons = document.querySelectorAll('.read-more-btn');
 
             readMoreButtons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     const text = this.previousElementSibling;
 
                     if (text.classList.contains('expanded')) {
@@ -222,7 +240,7 @@
             });
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const textPart1 = "SELAMAT DATANG DI WEBSITE";
             const textPart2 = "SD SWASTA FILADELFIA TARUTUNG";
             let i = 0;
@@ -258,22 +276,23 @@
     @endphp
 
     @php
-        $beritas = \App\Models\Berita::latest()->select('berita.*')->paginate(3);
+        $beritas = \App\Models\Berita::latest()->select('berita.*')->paginate(4);
     @endphp
 
     <div>
         <!-- Navbar -->
         @include('navbar')
         <!-- Hero image -->
-        <div class="hero">
-            <img src="{{ asset('img/SD.webp') }}" alt="Background Image" class="hero-image">
+        <div>
+            <img src="{{ asset('img/SD.webp') }}" alt="Background Image" class="hero-image"
+                style="height: 470px; width:100%;">
             <div class="hero-overlay">
                 <h1 id="welcome-part1"></h1>
                 <h1 id="welcome-part2"></h1>
             </div>
         </div>
 
-        <br><br><br>
+        <br>
 
         <div class="col-md-12 text-center fh5co-heading" style="text-align: center;">
             <h2>Kata Sambutan</h2><br>
@@ -292,7 +311,8 @@
                         </div>
                         <div class="column-two">
                             <center>
-                                <img src="{{ asset('images/beranda/' . $value->ketua_image) }}" alt="Ketua Yayasan" class="profile-img">
+                                <img src="{{ asset('images/beranda/' . $value->ketua_image) }}" alt="Ketua Yayasan"
+                                    class="profile-img">
                             </center>
                         </div>
                     </div>
@@ -307,7 +327,8 @@
                     <div class="col-container">
                         <div class="column-two">
                             <center>
-                                <img src="{{ asset('images/beranda/' . $value->kepala_image) }}" alt="Kepala Sekolah" class="profile-img">
+                                <img src="{{ asset('images/beranda/' . $value->kepala_image) }}" alt="Kepala Sekolah"
+                                    class="profile-img">
                             </center>
                         </div>
                         <div class="column-one">
@@ -321,7 +342,7 @@
             </div>
 
             <br><br><br>
-        @endforeach --}}
+        @endforeach
     </div>
 
     <div class="container">
@@ -330,19 +351,22 @@
         </div>
         <br><br><br>
         <div class="card-container" style="border-radius: 15px;">
-            @foreach($beritas as $key => $value)
-            <div class="card">
-                <div class="card-body text-center">
-                    <img src="{{ asset('images/berita/'. $value->image) }}" alt="{{$value->image}}" class="img-fluid mb-3" style="width: 90%">
-                    <h5 class="card-title" style="color: #007BFF;">{{$value->informasi_berita}}</h5>
-                    <p class="card-text text" id="berita-{{$key}}" style="text-align: center;">{{$value->informasi_alumni}}</p>
-                    <!-- Tambahkan link menuju halaman artikel/show/berita_id -->
-                    <button class="berita" data-target="#berita-{{$key}}">
-                    <a href="{{ route('user.berita.show', ['berita_id' => $value->berita_id]) }}" id="garisbawah">Baca Selengkapnya</a>
-                    </button>
+            @foreach ($beritas as $key => $value)
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="{{ asset('images/berita/' . $value->image) }}" alt="{{ $value->image }}"
+                            class="card-img-top" style="width: 100%; ">
+                        <h5 class="card-title" style="color: #007BFF;">{{ $value->informasi_berita }}</h5>
+                        <p class="card-text text" id="berita-{{ $key }}" style="text-align: center;">
+                            {{ $value->informasi_alumni }}</p>
+                        <!-- Tambahkan link menuju halaman artikel/show/berita_id -->
+                        <button class="berita" data-target="#berita-{{ $key }}">
+                            <a href="{{ route('user.berita.show', ['berita_id' => $value->berita_id]) }}"
+                                id="garisbawah">Baca Selengkapnya</a>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
         </div>
     </div>
 
@@ -360,7 +384,7 @@
         <br><br>
         <div class="container">
             <div class="card-container" style="margin-top: 60px;">
-                @foreach($beritas as $key => $value)
+                @foreach ($beritas as $key => $value)
     <div class="card">
         <div class="card-body text-center">
             <img src="{{ asset('storage/'. $value->image) }}" alt="{{$value->image}}" class="img-fluid mb-3" style="width: 90%">
